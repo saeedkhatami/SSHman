@@ -16,8 +16,6 @@ This C++ program provides a terminal-based user interface for managing SSH users
 
 ---
 
-Feel free to adjust the summary based on specific features or functionalities that you'd like to highlight.
-
 ## known bug
 
  - [ ] server message, you account has expired; please contact your system administrator
