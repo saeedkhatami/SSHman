@@ -10,11 +10,13 @@
 #include <chrono>
 #include <thread>
 
-const std::string DATABASE_FILE = "./db.txt";
+const std::string DATABASE_FILE = "./db.txt"; // todo: make it in SQL database
+
 
 struct UserData {
     std::string expirationDate;
     bool active;
+    // int max IPs concurrent; (kontor)
 };
 
 void clearScreen() {
@@ -32,9 +34,10 @@ std::map<std::string, UserData> loadDatabase() {
             std::string username;
             std::string expirationDate;
             bool active;
+            // int max IPs concurrent
 
-            if (iss >> username >> expirationDate >> active) {
-                database[username] = {expirationDate, active};
+            if (iss >> username >> expirationDate >> active) { // >> max IPs
+                database[username] = {expirationDate, active}; // ,max IPs
             }
         }
 
@@ -95,7 +98,8 @@ void createUser(const std::string& username, int daysActive) {
     saveDatabase(database);
 }
 
-void deleteUser(const std::string& username) {
+void deleteUser(const std::string& username) { // in delete user we can use sudo in the app or 
+                                               //we can force user to run the app via sudo
     std::map<std::string, UserData> database = loadDatabase();
     auto it = database.find(username);
 
@@ -128,7 +132,7 @@ void listUsers() {
     }
 }
 
-void editUser(const std::string& username) {
+void editUser(const std::string& username) { // buggy section
     std::map<std::string, UserData> database = loadDatabase();
     auto it = database.find(username);
 
